@@ -15,6 +15,7 @@ from ivy.func_wrapper import (
     infer_dtype,
     handle_array_like_without_promotion,
     inputs_to_ivy_arrays,
+    handle_device_shifting,
 )
 
 
@@ -23,6 +24,7 @@ from ivy.func_wrapper import (
 @handle_out_argument
 @to_native_arrays_and_back
 @infer_dtype
+@handle_device_shifting
 def vorbis_window(
     window_length: Union[ivy.Array, ivy.NativeArray],
     *,
@@ -63,6 +65,7 @@ def vorbis_window(
 @handle_out_argument
 @to_native_arrays_and_back
 @infer_dtype
+@handle_device_shifting
 def hann_window(
     size: int,
     /,
@@ -110,6 +113,7 @@ def hann_window(
 @handle_out_argument
 @to_native_arrays_and_back
 @infer_dtype
+@handle_device_shifting
 def kaiser_window(
     window_length: int,
     periodic: bool = True,
@@ -211,6 +215,7 @@ def kaiser_bessel_derived_window(
 @handle_nestable
 @handle_out_argument
 @infer_dtype
+@handle_device_shifting
 def hamming_window(
     window_length: int,
     /,
@@ -365,6 +370,7 @@ def tril_indices(
 @handle_out_argument
 @inputs_to_ivy_arrays
 @infer_dtype
+@handle_device_shifting
 @infer_device
 def eye_like(
     x: Union[ivy.Array, ivy.NativeArray],

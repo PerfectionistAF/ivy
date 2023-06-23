@@ -4,7 +4,7 @@ from typing import Callable, Union, Sequence
 
 # local
 import ivy
-from ivy import inputs_to_ivy_arrays, handle_nestable
+from ivy import inputs_to_ivy_arrays, handle_nestable, handle_device_shifting
 from ivy.utils.exceptions import handle_exceptions
 
 
@@ -23,6 +23,7 @@ def _correct_ivy_callable(func):
 @handle_exceptions
 @handle_nestable
 @inputs_to_ivy_arrays
+@handle_device_shifting
 def reduce(
     operand: Union[ivy.Array, ivy.NativeArray],
     init_value: Union[int, float],
