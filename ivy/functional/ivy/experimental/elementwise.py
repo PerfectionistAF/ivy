@@ -6,6 +6,7 @@ from ivy.func_wrapper import (
     handle_out_argument,
     to_native_arrays_and_back,
     handle_nestable,
+    handle_partial_mixed_function,
     integer_arrays_to_float,
     handle_array_like_without_promotion,
     inputs_to_ivy_arrays,
@@ -999,6 +1000,7 @@ def ldexp(
 
 @handle_exceptions
 @handle_nestable
+@handle_partial_mixed_function
 @handle_array_like_without_promotion
 @inputs_to_ivy_arrays
 @handle_array_function
@@ -1116,7 +1118,7 @@ lerp.mixed_backend_wrappers = {
         "inputs_to_native_arrays",
         "outputs_to_ivy_arrays",
     ),
-    "to_skip": ("inputs_to_ivy_arrays",),
+    "to_skip": ("inputs_to_ivy_arrays", "handle_partial_mixed_function"),
 }
 
 

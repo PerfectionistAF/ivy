@@ -4,6 +4,7 @@ from typing import Union, Optional, Tuple
 import ivy
 from ivy.utils.backend import current_backend
 from ivy.func_wrapper import (
+    handle_partial_mixed_function,
     to_native_arrays_and_back,
     handle_out_argument,
     handle_nestable,
@@ -98,6 +99,7 @@ def l2_normalize(
 
 @handle_exceptions
 @handle_nestable
+@handle_partial_mixed_function
 @handle_array_like_without_promotion
 @inputs_to_ivy_arrays
 @handle_array_function
@@ -212,12 +214,13 @@ batch_norm.mixed_backend_wrappers = {
         "inputs_to_native_arrays",
         "outputs_to_ivy_arrays",
     ),
-    "to_skip": ("inputs_to_ivy_arrays",),
+    "to_skip": ("inputs_to_ivy_arrays", "handle_partial_mixed_function"),
 }
 
 
 @handle_exceptions
 @handle_nestable
+@handle_partial_mixed_function
 @handle_array_like_without_promotion
 @inputs_to_ivy_arrays
 @handle_array_function
@@ -340,7 +343,7 @@ instance_norm.mixed_backend_wrappers = {
         "inputs_to_native_arrays",
         "outputs_to_ivy_arrays",
     ),
-    "to_skip": ("inputs_to_ivy_arrays",),
+    "to_skip": ("inputs_to_ivy_arrays", "handle_partial_mixed_function"),
 }
 
 

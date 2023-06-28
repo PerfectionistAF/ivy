@@ -1,5 +1,4 @@
 # global
-from __future__ import annotations
 from typing import Union, Tuple, Optional, Sequence, Iterable, Generator
 
 # local
@@ -68,7 +67,6 @@ def vorbis_window(
 @handle_device_shifting
 def hann_window(
     size: int,
-    /,
     *,
     periodic: bool = True,
     dtype: Optional[Union[ivy.Dtype, ivy.NativeDtype]] = None,
@@ -97,10 +95,10 @@ def hann_window(
 
     Functional Examples
     -------------------
-    >>> ivy.hann_window(4, True)
+    >>> ivy.hann_window(4, periodic = True)
     ivy.array([0. , 0.5, 1. , 0.5])
 
-    >>> ivy.hann_window(7, False)
+    >>> ivy.hann_window(7, periodic = False)
     ivy.array([0.  , 0.25, 0.75, 1.  , 0.75, 0.25, 0.  ])
     """
     return ivy.current_backend().hann_window(
@@ -218,7 +216,6 @@ def kaiser_bessel_derived_window(
 @handle_device_shifting
 def hamming_window(
     window_length: int,
-    /,
     *,
     periodic: bool = True,
     alpha: float = 0.54,
@@ -277,7 +274,6 @@ def tril_indices(
     n_rows: int,
     n_cols: Optional[int] = None,
     k: int = 0,
-    /,
     *,
     device: Optional[Union[ivy.Device, ivy.NativeDevice]] = None,
 ) -> Tuple[ivy.Array, ...]:
@@ -374,7 +370,6 @@ def tril_indices(
 @infer_device
 def eye_like(
     x: Union[ivy.Array, ivy.NativeArray],
-    /,
     *,
     k: int = 0,
     dtype: Optional[Union[ivy.Dtype, ivy.NativeDtype]] = None,
@@ -546,6 +541,7 @@ def ndindex(
 @handle_exceptions
 def indices(
     dimensions: Sequence,
+    *,
     dtype: Union[ivy.Dtype, ivy.NativeDtype] = ivy.int64,
     sparse: bool = False,
 ) -> Union[ivy.Array, Tuple[ivy.Array, ...]]:
